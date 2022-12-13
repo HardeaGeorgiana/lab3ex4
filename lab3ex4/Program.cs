@@ -24,7 +24,7 @@ namespace lab3ex4
            // Console.WriteLine($"Cel mai mare numar este {CelMaiMare(vector)}");
            // Console.WriteLine($"Cel mai mic numar este {CelMaiMic(vector)}");
            // Console.WriteLine($"Numere divizibile cu 3: {Divizibil(vector)}");
-           // Console.WriteLine($"Numerele prime din vector sunt: {NumarPrim(vector)}");
+           Console.WriteLine($"Numerele prime din vector sunt: {NumarePrime(vector)}");
 
 
         }
@@ -103,32 +103,37 @@ namespace lab3ex4
             return numere;
         }
 
-       static string NumarPrim(int[] vector)
+       static string NumarePrime(int[] vector)
         {
             string numere = "";
 
            for(int i = 0; i < vector.Length; i++)
             {
-                if (vector[i] <= 1)
-                {
-                    continue;
-                }
-                for (int j = 2; j <= vector[i] / 2; j++)
-                {
-                    if(vector[i] % j == 0)
-                    {
+                int numar = NumarPrim(vector[i]);
 
-                    }
-                    else
-                    {
-                        numere = numere + $"{vector[i]}, ";
-                        break;
-                    }
-                }
+                if (numar > 0)
+                {
+                    numere += $"{vector[i]}, ";
+                }   
             }
             return numere;
                
         }
-       
+        static int NumarPrim(int number)
+        {
+            if (number <= 1)
+            {
+                return 0;
+            }
+
+            for (int i = 2; i <= number / 2; i++)
+            {
+                if (number % i == 0)
+                {
+                    return 0;
+                }
+            }
+            return number;
+        }
     }
 }
